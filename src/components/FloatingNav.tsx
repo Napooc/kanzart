@@ -58,13 +58,13 @@ export const FloatingNav = ({
           duration: 0.3,
         }}
         className={cn(
-          "fixed top-6 inset-x-0 mx-auto z-50 px-4",
+          "fixed top-0 inset-x-0 mx-auto z-50 px-4 pt-4",
           className
         )}
       >
-        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-3 flex items-center justify-between shadow-2xl">
+        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="KENZART" className="h-12 w-auto" />
+            <img src={logo} alt="KENZART" className="h-20 w-auto" />
           </Link>
 
           <div className="flex items-center space-x-1">
