@@ -8,29 +8,6 @@ import interiorHotel from "@/assets/interior-hotel.jpg";
 
 const navItems = [
   { name: "Nouveauté", link: "/nouveaute" },
-  {
-    name: "Thème",
-    dropdownItems: [
-      { name: "Mon Maroc", link: "/theme/maroc" },
-      { name: "Art Islamique et calligraphie", link: "/theme/islamic" },
-      { name: "Nature et paysage", link: "/theme/nature" },
-      { name: "Antique et vintage", link: "/theme/vintage" },
-      { name: "Black and white", link: "/theme/bw" },
-      { name: "Art floral", link: "/theme/floral" },
-      { name: "Tableaux texturés", link: "/theme/texture" },
-      { name: "Autour du Monde", link: "/theme/world" },
-    ],
-  },
-  {
-    name: "Couleur",
-    dropdownItems: [
-      { name: "Rouge", link: "/couleur/rouge" },
-      { name: "Bleu", link: "/couleur/bleu" },
-      { name: "Vert", link: "/couleur/vert" },
-      { name: "Jaune", link: "/couleur/jaune" },
-      { name: "Noir & Blanc", link: "/couleur/noir-blanc" },
-    ],
-  },
   { name: "Format", link: "/format" },
   { name: "À propos", link: "/about" },
   { name: "Contact", link: "/contact" },
