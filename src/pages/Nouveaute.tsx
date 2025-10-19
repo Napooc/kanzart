@@ -33,8 +33,6 @@ const navItems = [
       { name: "Rouge", link: "/couleur/rouge" },
       { name: "Bleu", link: "/couleur/bleu" },
       { name: "Vert", link: "/couleur/vert" },
-      { name: "Jaune", link: "/couleur/jaune" },
-      { name: "Noir & Blanc", link: "/couleur/noir-blanc" },
     ],
   },
   { name: "Format", link: "/format" },
