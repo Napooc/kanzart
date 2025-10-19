@@ -1,16 +1,10 @@
 import { FloatingNav } from "@/components/FloatingNav";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
+import { navItems } from "@/config/navigation";
 import frameClassic from "@/assets/frame-classic.jpg";
 import frameModern from "@/assets/frame-modern.jpg";
 import { Check } from "lucide-react";
-
-const navItems = [
-  { name: "Nouveauté", link: "/nouveaute" },
-  { name: "Format", link: "/format" },
-  { name: "À propos", link: "/about" },
-  { name: "Contact", link: "/contact" },
-];
 
 const Format = () => {
   const frameOptions = [

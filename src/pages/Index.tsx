@@ -6,6 +6,7 @@ import { PartnersSection } from "@/components/PartnersSection";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
+import { navItems } from "@/config/navigation";
 
 import themeMaroc from "@/assets/theme-maroc.jpg";
 import themeIslamic from "@/assets/theme-islamic.jpg";
@@ -18,52 +19,6 @@ import themeWorld from "@/assets/theme-world.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
-
-const navItems = [
-  { name: "Nouveauté", link: "/nouveaute" },
-  {
-    name: "Thème",
-    dropdownItems: [
-      { name: "Mon Maroc", link: "/theme/maroc" },
-      { name: "Art Islamique et calligraphie", link: "/theme/islamic" },
-      { name: "Nature et paysage", link: "/theme/nature" },
-      { name: "Antique et vintage", link: "/theme/vintage" },
-      { name: "Black and white", link: "/theme/bw" },
-      { name: "Art floral", link: "/theme/floral" },
-      { name: "Tableaux texturés", link: "/theme/texture" },
-      { name: "Autour du Monde", link: "/theme/world" },
-      { name: "Cinéma et musique", link: "/theme/cinema" },
-      { name: "Sports et jeux", link: "/theme/sports" },
-      { name: "Enfant", link: "/theme/enfant" },
-      { name: "Diptyque et triptyque", link: "/theme/diptyque" },
-    ],
-  },
-  {
-    name: "Couleur",
-    dropdownItems: [
-      { name: "Rouge", link: "/couleur/rouge" },
-      { name: "Bleu", link: "/couleur/bleu" },
-      { name: "Vert", link: "/couleur/vert" },
-      { name: "Jaune", link: "/couleur/jaune" },
-      { name: "Noir & Blanc", link: "/couleur/nb" },
-      { name: "Multicolore", link: "/couleur/multi" },
-    ],
-  },
-  { name: "Format", link: "/format" },
-  {
-    name: "Intérieur",
-    dropdownItems: [
-      { name: "Maison", link: "/interieur/maison" },
-      { name: "Bureau", link: "/interieur/bureau" },
-      { name: "Restaurant & Hôtels", link: "/interieur/restaurant" },
-      { name: "Personnalisé", link: "/interieur/personnalise" },
-    ],
-  },
-  { name: "Tableau 3D", link: "/tableau-3d" },
-  { name: "Panneaux Acoustique", link: "/panneaux-acoustique" },
-  { name: "À propos", link: "/about" },
-  { name: "Contact", link: "/contact" },
-];
 
 const Index = () => {
   return (

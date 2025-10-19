@@ -10,10 +10,17 @@ import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import logo from "@/assets/kenzart-logo.png";
 
+interface ColorItem {
+  name: string;
+  link: string;
+  color: string;
+}
+
 interface NavItem {
   name: string;
   link?: string;
   dropdownItems?: { name: string; link: string }[];
+  colorItems?: ColorItem[];
 }
 
 export const FloatingNav = ({
@@ -58,13 +65,13 @@ export const FloatingNav = ({
           duration: 0.3,
         }}
         className={cn(
-          "fixed top-6 inset-x-0 mx-auto z-50 px-4",
+          "fixed top-0 inset-x-0 mx-auto z-50 px-4 pt-4",
           className
         )}
       >
-        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-3 flex items-center justify-between shadow-2xl">
+        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="KENZART" className="h-12 w-auto" />
+            <img src={logo} alt="KENZART" className="h-20 w-auto" />
           </Link>
 
           <div className="flex items-center space-x-1">
@@ -106,6 +113,32 @@ export const FloatingNav = ({
                               {item.name}
                             </Link>
                           ))}
+                        </motion.div>
+                      )}
+                      {hoveredItem === navItem.name && navItem.colorItems && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-0 mt-2 min-w-[240px] glass-effect rounded-2xl shadow-2xl p-4"
+                        >
+                          <div className="grid grid-cols-4 gap-3">
+                            {navItem.colorItems.map((item, index) => (
+                              <Link
+                                key={index}
+                                to={item.link}
+                                className="group flex flex-col items-center gap-2"
+                              >
+                                <div 
+                                  className="w-12 h-12 rounded-full border-2 border-border shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl"
+                                  style={{ backgroundColor: item.color }}
+                                />
+                                <span className="text-xs text-foreground/70 group-hover:text-foreground transition-colors">
+                                  {item.name}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>

@@ -5,13 +5,7 @@ import { Palette, Heart, Award, Users } from "lucide-react";
 import interiorHome from "@/assets/interior-home.jpg";
 import interiorOffice from "@/assets/interior-office.jpg";
 import interiorHotel from "@/assets/interior-hotel.jpg";
-
-const navItems = [
-  { name: "Nouveauté", link: "/nouveaute" },
-  { name: "Format", link: "/format" },
-  { name: "À propos", link: "/about" },
-  { name: "Contact", link: "/contact" },
-];
+import { navItems } from "@/config/navigation";
 
 const About = () => {
   const values = [

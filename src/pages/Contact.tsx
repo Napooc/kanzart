@@ -7,13 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-
-const navItems = [
-  { name: "Nouveauté", link: "/nouveaute" },
-  { name: "Format", link: "/format" },
-  { name: "À propos", link: "/about" },
-  { name: "Contact", link: "/contact" },
-];
+import { navItems } from "@/config/navigation";
 
 const Contact = () => {
   const { toast } = useToast();
