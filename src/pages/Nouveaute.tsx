@@ -3,6 +3,7 @@ import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
 import { Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
@@ -29,7 +30,7 @@ const Nouveaute = () => {
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
       
-      <div className="pt-32 pb-16 px-4">
+      <div className="pt-40 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header - Compact */}
           <motion.div
@@ -50,17 +51,19 @@ const Nouveaute = () => {
             </p>
           </motion.div>
 
-          {/* Modern Compact Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {products.map((product, index) => (
-              <motion.a
+              <Link
                 key={product.id}
-                href={`/product/${product.id}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative elegant-card cursor-pointer overflow-hidden"
+                to={`/product/${product.id}`}
+                className="block"
               >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="group relative elegant-card cursor-pointer overflow-hidden"
+                >
                 <div className="aspect-square overflow-hidden">
                   <img 
                     src={product.image} 
@@ -93,7 +96,8 @@ const Nouveaute = () => {
                     </motion.span>
                   </div>
                 )}
-              </motion.a>
+              </motion.div>
+            </Link>
             ))}
           </div>
         </div>

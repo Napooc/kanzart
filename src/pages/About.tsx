@@ -41,7 +41,7 @@ const About = () => {
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
       
-      <div className="pt-32 pb-20 px-4">
+      <div className="pt-40 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

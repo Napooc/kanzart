@@ -2,7 +2,7 @@ import { FloatingNav } from "@/components/FloatingNav";
 import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -28,7 +28,7 @@ const Theme = () => {
   return (
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
-      <div className="pt-32 pb-16 px-4">
+      <div className="pt-40 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
             <h1 className="text-5xl font-bold mb-4 text-gradient">{current.title}</h1>
@@ -37,9 +37,11 @@ const Theme = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {products.map((p, i) => (
-              <motion.a key={i} href={`/product/${p.id}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }} className="elegant-card overflow-hidden group">
-                <img src={p.image} alt="Art" className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-700" />
-              </motion.a>
+              <Link key={i} to={`/product/${p.id}`}>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.1 }} className="elegant-card overflow-hidden group">
+                  <img src={p.image} alt="Art" className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-700" />
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

@@ -92,7 +92,7 @@ const Product = () => {
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
 
-      <div className="pt-32 pb-20 px-4">
+      <div className="pt-40 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 mb-20">
             {/* Live Preview */}
