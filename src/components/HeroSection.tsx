@@ -7,8 +7,6 @@ import hero4 from "@/assets/hero-4.jpg";
 import hero5 from "@/assets/hero-5.jpg";
 import hero6 from "@/assets/hero-6.jpg";
 import { Button } from "@/components/ui/button";
-import { AnimatedText } from "@/components/ui/animated-underline-text-one";
-import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight } from "lucide-react";
 
 const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
@@ -44,59 +42,24 @@ export const HeroSection = () => {
       </AnimatePresence>
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
-        <motion.div
+        <motion.h1
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-6"
+          className="text-6xl md:text-8xl font-bold text-white mb-6"
         >
-          <AnimatedText
-            text="KENZART"
-            textClassName="text-6xl md:text-8xl font-bold text-white"
-            underlineClassName="text-white"
-            underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"
-            underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
-            underlineDuration={2}
-          />
-        </motion.div>
+          KENZART
+        </motion.h1>
         
-        <motion.div
+        <motion.p
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.8 }}
           className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl"
         >
-          <VerticalCutReveal
-            splitBy="words"
-            staggerDuration={0.08}
-            staggerFrom="first"
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 25,
-              delay: 0.2,
-            }}
-            containerClassName="text-center leading-relaxed"
-            wordLevelClassName="mr-1"
-          >
-            Découvrez l'art marocain contemporain.
-          </VerticalCutReveal>
-          <VerticalCutReveal
-            splitBy="words"
-            staggerDuration={0.08}
-            staggerFrom="first"
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 25,
-              delay: 1.2,
-            }}
-            containerClassName="text-center leading-relaxed"
-            wordLevelClassName="mr-1"
-          >
-            Personnalisez vos tableaux avec des cadres élégants et des dimensions sur mesure.
-          </VerticalCutReveal>
-        </motion.div>
+          Découvrez l'art marocain contemporain. 
+          Personnalisez vos tableaux avec des cadres élégants et des dimensions sur mesure.
+        </motion.p>
 
         <motion.div
           initial={{ y: 20, opacity: 0 }}

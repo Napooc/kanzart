@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import kenzartLogo from "@/assets/kenzart-logo.png";
 
 const partners = [
   "Musée d'Art",
@@ -36,13 +35,9 @@ export const PartnersSection = () => {
             {[...partners, ...partners, ...partners].map((partner, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 flex items-center justify-center"
+                className="flex-shrink-0 text-2xl font-bold text-muted-foreground whitespace-nowrap"
               >
-                <img
-                  src={kenzartLogo}
-                  alt={`Partner ${index + 1}`}
-                  className="h-20 w-auto opacity-60 hover:opacity-100 transition-opacity duration-300"
-                />
+                {partner}
               </div>
             ))}
           </motion.div>
