@@ -69,9 +69,9 @@ export const FloatingNav = ({
           className
         )}
       >
-        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="KENZART" className="h-20 w-auto" />
+        <div className="max-w-7xl mx-auto glass-effect rounded-full px-10 py-6 flex items-center justify-between shadow-2xl">
+          <Link to="/" className="flex items-center flex-shrink-0">
+            <img src={logo} alt="KENZART" className="h-28 w-auto" />
           </Link>
 
           <div className="flex items-center space-x-1">
