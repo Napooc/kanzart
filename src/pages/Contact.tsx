@@ -1,5 +1,5 @@
 import { FloatingNav } from "@/components/FloatingNav";
-import { Footer } from "@/components/Footer";
+import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -188,7 +188,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <Footer />
+      <FooterTaped />
     </div>
   );
 };

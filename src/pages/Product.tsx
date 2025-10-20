@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FloatingNav } from "@/components/FloatingNav";
-import { Footer } from "@/components/Footer";
+import { FooterTaped } from "@/components/FooterTaped";
 import { ProductCard } from "@/components/ProductCard";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
@@ -298,7 +298,7 @@ const Product = () => {
         </div>
       </div>
 
-      <Footer />
+      <FooterTaped />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { FloatingNav } from "@/components/FloatingNav";
-import { Footer } from "@/components/Footer";
+import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
 import frameClassic from "@/assets/frame-classic.jpg";
@@ -154,7 +154,7 @@ const Format = () => {
         </div>
       </div>
 
-      <Footer />
+      <FooterTaped />
     </div>
   );
 };

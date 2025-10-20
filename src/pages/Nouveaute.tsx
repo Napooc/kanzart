@@ -1,6 +1,5 @@
 import { FloatingNav } from "@/components/FloatingNav";
-import { ProductCard } from "@/components/ProductCard";
-import { Footer } from "@/components/Footer";
+import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
 import { Sparkles } from "lucide-react";
@@ -16,21 +15,21 @@ import themeIslamic from "@/assets/theme-islamic.jpg";
 
 const Nouveaute = () => {
   const products = [
-    { image: hero1, title: "Portes Marocaines Traditionnelles", price: "2,500 MAD", id: "1" },
-    { image: hero2, title: "Calligraphie Arabe Dorée", price: "1,800 MAD", id: "2" },
-    { image: hero3, title: "Coucher de Soleil sur l'Atlas", price: "2,200 MAD", id: "3" },
-    { image: hero4, title: "Abstraction en Noir et Blanc", price: "1,900 MAD", id: "4" },
-    { image: hero5, title: "Jardin Fleuri Aquarelle", price: "1,600 MAD", id: "5" },
-    { image: hero6, title: "Souk Marocain Vintage", price: "2,300 MAD", id: "6" },
-    { image: themeMaroc, title: "Mosaïque Marocaine Moderne", price: "2,800 MAD", id: "7" },
-    { image: themeIslamic, title: "Art Islamique Géométrique", price: "2,600 MAD", id: "8" },
+    { image: hero1, title: "Portes Marocaines Traditionnelles", id: "1" },
+    { image: hero2, title: "Calligraphie Arabe Dorée", id: "2" },
+    { image: hero3, title: "Coucher de Soleil sur l'Atlas", id: "3" },
+    { image: hero4, title: "Abstraction en Noir et Blanc", id: "4" },
+    { image: hero5, title: "Jardin Fleuri Aquarelle", id: "5" },
+    { image: hero6, title: "Souk Marocain Vintage", id: "6" },
+    { image: themeMaroc, title: "Mosaïque Marocaine Moderne", id: "7" },
+    { image: themeIslamic, title: "Art Islamique Géométrique", id: "8" },
   ];
 
   return (
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
       
-      <div className="pt-48 pb-16 px-4">
+      <div className="pt-32 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header - Compact */}
           <motion.div
@@ -60,38 +59,38 @@ const Nouveaute = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative elegant-card cursor-pointer"
+                className="group relative elegant-card cursor-pointer overflow-hidden"
               >
-                <div className="aspect-[3/4] overflow-hidden rounded-xl">
+                <div className="aspect-square overflow-hidden">
                   <img 
                     src={product.image} 
                     alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
-                    <h3 className="font-semibold text-sm mb-1 text-foreground line-clamp-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-4">
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="font-semibold text-sm text-white line-clamp-2 mb-2">
                       {product.title}
                     </h3>
-                    <div className="flex items-center justify-between">
-                      <span className="text-accent font-bold text-sm">{product.price}</span>
-                      <span className="text-xs text-muted-foreground group-hover:text-accent transition-colors">
-                        Voir →
-                      </span>
-                    </div>
+                    <span className="text-xs text-white/90 flex items-center gap-1">
+                      Personnaliser <span className="text-accent">→</span>
+                    </span>
                   </div>
                 </div>
 
                 {index < 3 && (
                   <div className="absolute top-3 right-3 z-10">
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-accent text-white rounded-full text-xs font-semibold shadow-lg">
+                    <motion.span 
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent text-white rounded-full text-xs font-bold shadow-lg"
+                    >
                       <Sparkles className="h-3 w-3" />
                       Nouveau
-                    </span>
+                    </motion.span>
                   </div>
                 )}
               </motion.a>
@@ -100,7 +99,7 @@ const Nouveaute = () => {
         </div>
       </div>
 
-      <Footer />
+      <FooterTaped />
     </div>
   );
 };

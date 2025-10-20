@@ -4,7 +4,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { ThemeCard } from "@/components/ThemeCard";
 import { PartnersSection } from "@/components/PartnersSection";
 import { ReviewsSection } from "@/components/ReviewsSection";
-import { Footer } from "@/components/Footer";
+import { FooterTaped } from "@/components/FooterTaped";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
 
@@ -151,7 +151,7 @@ const Index = () => {
 
       <PartnersSection />
       <ReviewsSection />
-      <Footer />
+      <FooterTaped />
     </div>
   );
 };
