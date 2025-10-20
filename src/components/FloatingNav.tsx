@@ -69,12 +69,12 @@ export const FloatingNav = ({
           className
         )}
       >
-        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-center gap-8 shadow-2xl">
-          <Link to="/" className="flex items-center flex-shrink-0">
-            <img src={logo} alt="KENZART" className="h-20 w-auto" />
+        <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
+          <Link to="/" className="flex items-center flex-shrink-0 pr-8">
+            <img src={logo} alt="KENZART" className="h-20 w-auto px-4" />
           </Link>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-1 justify-center">
             {navItems.map((navItem, idx) => (
               <div
                 key={`nav-${idx}`}
