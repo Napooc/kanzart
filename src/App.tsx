@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Theme from "./pages/Theme";
 import Interieur from "./pages/Interieur";
+import Couleur from "./pages/Couleur";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/theme/:theme" element={<Theme />} />
           <Route path="/interieur/:type" element={<Interieur />} />
+          <Route path="/couleur/:color" element={<Couleur />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
