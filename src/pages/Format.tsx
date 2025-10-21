@@ -368,18 +368,7 @@ const Format = () => {
               </div>
               
               <div className="relative z-10 p-16 text-center text-primary-foreground">
-                <motion.div initial={{
-                scale: 0
-              }} whileInView={{
-                scale: 1
-              }} viewport={{
-                once: true
-              }} transition={{
-                type: "spring",
-                delay: 0.2
-              }}>
-                  <Sparkles className="w-16 h-16 mx-auto mb-6 animate-float" />
-                </motion.div>
+                
                 
                 <h3 className="text-4xl md:text-5xl font-bold mb-6">
                   Besoin d'une dimension spécifique ?
