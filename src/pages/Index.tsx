@@ -1,6 +1,6 @@
 import { FloatingNav } from "@/components/FloatingNav";
 import { HeroSection } from "@/components/HeroSection";
-import { ProductCard } from "@/components/ProductCard";
+import { ProductCarousel } from "@/components/ProductCarousel";
 import { ThemeCard } from "@/components/ThemeCard";
 import { PartnersSection } from "@/components/PartnersSection";
 import { ReviewsSection } from "@/components/ReviewsSection";
@@ -19,8 +19,31 @@ import themeWorld from "@/assets/theme-world.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import hero5 from "@/assets/hero-5.jpg";
+import hero6 from "@/assets/hero-6.jpg";
 
 const Index = () => {
+  // Nouveautés products - easily expandable by admin
+  const nouveautes = [
+    { image: hero1, title: "Portes Marocaines", link: "/product/1" },
+    { image: hero2, title: "Calligraphie Dorée", link: "/product/2" },
+    { image: hero3, title: "Sunset Atlas", link: "/product/3" },
+    { image: hero4, title: "Motifs Berbères", link: "/product/4" },
+    { image: hero5, title: "Jardin Majorelle", link: "/product/5" },
+    { image: hero6, title: "Désert d'Or", link: "/product/6" },
+  ];
+
+  // Best sellers - easily expandable by admin
+  const bestSellers = [
+    { image: themeMaroc, title: "Essence Marocaine", link: "/product/7" },
+    { image: themeIslamic, title: "Divine Calligraphie", link: "/product/8" },
+    { image: themeNature, title: "Sérénité des Montagnes", link: "/product/9" },
+    { image: themeVintage, title: "Nostalgie Vintage", link: "/product/10" },
+    { image: themeBW, title: "Élégance Monochrome", link: "/product/11" },
+    { image: themeFloral, title: "Jardin Enchanté", link: "/product/12" },
+  ];
+
   return (
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
@@ -28,7 +51,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Nouveautés Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -40,27 +63,7 @@ const Index = () => {
             <p className="text-xl text-muted-foreground">Découvrez nos dernières créations</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProductCard
-              image={hero1}
-              title="Portes Marocaines"
-              price="2,500 MAD"
-              link="/product/1"
-              className="lg:col-span-2 lg:row-span-2"
-            />
-            <ProductCard
-              image={hero2}
-              title="Calligraphie Dorée"
-              price="1,800 MAD"
-              link="/product/2"
-            />
-            <ProductCard
-              image={hero3}
-              title="Sunset Atlas"
-              price="2,200 MAD"
-              link="/product/3"
-            />
-          </div>
+          <ProductCarousel products={nouveautes} itemsPerView={4} />
         </div>
       </section>
 
@@ -91,7 +94,7 @@ const Index = () => {
       </section>
 
       {/* Best Sellers Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -103,49 +106,7 @@ const Index = () => {
             <p className="text-xl text-muted-foreground">Les préférés de nos clients</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <ProductCard
-                image={themeMaroc}
-                title="Essence Marocaine"
-                price="3,200 MAD"
-                link="/product/4"
-              />
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <ProductCard
-                image={themeIslamic}
-                title="Divine Calligraphie"
-                price="2,800 MAD"
-                link="/product/5"
-              />
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <ProductCard
-                image={themeNature}
-                title="Sérénité des Montagnes"
-                price="2,600 MAD"
-                link="/product/6"
-              />
-            </motion.div>
-          </div>
+          <ProductCarousel products={bestSellers} itemsPerView={4} />
         </div>
       </section>
 

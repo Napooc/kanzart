@@ -255,7 +255,6 @@ const Product = () => {
                   key={similar.id}
                   image={similar.image}
                   title={similar.title}
-                  price={similar.price}
                   link={`/product/${similar.id}`}
                 />
               ))}

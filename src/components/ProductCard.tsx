@@ -1,60 +1,81 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Heart } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useState } from "react";
+
 interface ProductCardProps {
   image: string;
   title: string;
-  price?: string;
   link: string;
-  className?: string;
 }
+
 export const ProductCard = ({
   image,
   title,
-  price,
   link,
-  className
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  return <Link to={link}>
-      <motion.div initial={{
-      opacity: 0,
-      y: 20
-    }} whileInView={{
-      opacity: 1,
-      y: 0
-    }} viewport={{
-      once: true
-    }} transition={{
-      duration: 0.5
-    }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={`elegant-card group cursor-pointer ${className}`}>
-        <div className="relative overflow-hidden aspect-[3/4]">
-          <motion.img src={image} alt={title} className="w-full h-full object-cover" animate={{
-          scale: isHovered ? 1.1 : 1
-        }} transition={{
-          duration: 0.6,
-          ease: "easeOut"
-        }} />
-          
-          <motion.div initial={{
-          opacity: 0
-        }} animate={{
-          opacity: isHovered ? 1 : 0
-        }} className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-          
-        </div>
+  return (
+    <Link to={link}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="group relative overflow-hidden rounded-2xl cursor-pointer h-[280px] w-full"
+      >
+        {/* Image with overlay */}
+        <motion.div 
+          className="absolute inset-0"
+          animate={{ scale: isHovered ? 1.1 : 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <img 
+            src={image} 
+            alt={title} 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        </motion.div>
 
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+        {/* Content overlay */}
+        <div className="absolute inset-0 flex flex-col justify-end p-6">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="mb-2"
+          >
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <Sparkles className="w-3 h-3 text-accent" />
+              <span className="text-xs text-white/90 font-medium">Personnalisable</span>
+            </div>
+          </motion.div>
+          
+          <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
             {title}
           </h3>
-          {price && <p className="text-lg font-medium text-gradient">
-              {price}
-            </p>}
+          
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: isHovered ? "100%" : "40%" }}
+            transition={{ duration: 0.4 }}
+            className="h-0.5 bg-gradient-to-r from-accent to-primary"
+          />
         </div>
+
+        {/* Corner decoration */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          className="absolute top-4 right-4 w-12 h-12"
+        >
+          <div className="w-full h-full border-t-2 border-r-2 border-accent/60 rounded-tr-xl" />
+        </motion.div>
       </motion.div>
-    </Link>;
+    </Link>
+  );
 };
