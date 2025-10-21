@@ -31,33 +31,45 @@ const Format = () => {
   const dimensions = [{
     name: "Petit",
     size: "30 x 40 cm",
+    width: 30,
+    height: 40,
     ideal: "Bureau, entrée",
-    icon: "📐"
+    icon: Ruler
   }, {
     name: "Moyen",
     size: "50 x 70 cm",
+    width: 50,
+    height: 70,
     ideal: "Chambre, salon",
-    icon: "🖼️"
+    icon: Frame
   }, {
     name: "Grand",
     size: "70 x 100 cm",
+    width: 70,
+    height: 100,
     ideal: "Salon, salle à manger",
-    icon: "🎨"
+    icon: Frame
   }, {
     name: "Très Grand",
     size: "100 x 140 cm",
+    width: 100,
+    height: 140,
     ideal: "Pièce principale, hôtel",
-    icon: "🏛️"
+    icon: Frame
   }, {
     name: "Panoramique",
     size: "40 x 120 cm",
+    width: 40,
+    height: 120,
     ideal: "Au-dessus du canapé",
-    icon: "🌄"
+    icon: Frame
   }, {
     name: "Sur Mesure",
     size: "Dimensions personnalisées",
+    width: 100,
+    height: 100,
     ideal: "Espaces spécifiques",
-    icon: "✨"
+    icon: Sparkles
   }];
   const benefits = [{
     icon: Shield,
@@ -301,49 +313,65 @@ const Format = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {dimensions.map((dim, index) => <motion.div key={index} initial={{
             opacity: 0,
-            scale: 0.8,
-            rotateY: -15
+            y: 30
           }} whileInView={{
             opacity: 1,
-            scale: 1,
-            rotateY: 0
+            y: 0
           }} viewport={{
             once: true
           }} transition={{
             delay: index * 0.1,
-            duration: 0.6,
-            type: "spring"
-          }} whileHover={{
-            y: -10,
-            scale: 1.05,
-            rotateY: 5,
-            transition: {
-              duration: 0.3
-            }
-          }} className="relative group" style={{
-            perspective: "1000px"
-          }}>
-                <div className="glass-effect p-8 rounded-2xl border-2 border-border/50 hover:border-accent/50 transition-all duration-300 h-full">
-                  {/* Icon */}
-                  <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {dim.icon}
+            duration: 0.5
+          }} className="relative group">
+                <div className="relative overflow-hidden rounded-3xl bg-card border border-border/50 hover:border-accent/50 transition-all duration-500 h-full">
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5" />
                   </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold mb-3">{dim.name}</h3>
-                  <div className="text-4xl font-bold text-gradient mb-6">{dim.size}</div>
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Idéal pour:</span>
-                    <br />
-                    {dim.ideal}
-                  </p>
 
-                  {/* Decorative Corner */}
-                  <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-accent/20 rounded-tr-2xl group-hover:border-accent/60 transition-colors" />
-                  <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-accent/20 rounded-bl-2xl group-hover:border-accent/60 transition-colors" />
+                  {/* Visual Frame Representation */}
+                  <div className="relative p-8">
+                    <div className="flex items-center justify-center mb-8">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                        className="relative"
+                        style={{
+                          width: `${Math.min(dim.width * 1.2, 120)}px`,
+                          height: `${Math.min(dim.height * 1.2, 120)}px`,
+                        }}
+                      >
+                        {/* Frame border representation */}
+                        <div className="absolute inset-0 border-4 border-accent/30 rounded-lg shadow-elegant">
+                          <div className="absolute inset-2 border-2 border-accent/20 rounded-sm" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
+                        </div>
+                        
+                        {/* Icon overlay */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <dim.icon className="w-8 h-8 text-accent" />
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 text-center">
+                      <h3 className="text-2xl font-bold mb-2">{dim.name}</h3>
+                      <div className="text-3xl font-bold text-accent mb-4">{dim.size}</div>
+                      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-4" />
+                      <p className="text-muted-foreground text-sm">
+                        <span className="font-semibold text-foreground block mb-1">Idéal pour:</span>
+                        {dim.ideal}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Decorative corners */}
+                  <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-accent/10 group-hover:border-accent/40 transition-colors duration-500" />
+                  <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-accent/10 group-hover:border-accent/40 transition-colors duration-500" />
                 </div>
               </motion.div>)}
           </div>
