@@ -7,12 +7,14 @@ interface ProductCardProps {
   image: string;
   title: string;
   link: string;
+  name?: string;
 }
 
 export const ProductCard = ({
   image,
   title,
   link,
+  name,
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -43,6 +45,22 @@ export const ProductCard = ({
 
         {/* Content overlay */}
         <div className="absolute inset-0 flex flex-col justify-end p-6">
+          {/* Product Name Badge - Top of Card */}
+          {name && (
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: isHovered ? 0 : -100, opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute top-4 left-4 right-4"
+            >
+              <div className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary/95 to-accent/95 backdrop-blur-md border border-white/20 shadow-lg">
+                <p className="text-sm font-bold text-white tracking-wide text-center truncate">
+                  {name}
+                </p>
+              </div>
+            </motion.div>
+          )}
+
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}

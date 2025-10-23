@@ -26,20 +26,7 @@ export const navItems: NavItem[] = [
       { name: "Autour du Monde", link: "/theme/world" },
     ],
   },
-  {
-    name: "Couleur",
-    colorItems: [
-      { name: "Rouge", link: "/couleur/rouge", color: "#DC2626" },
-      { name: "Bleu", link: "/couleur/bleu", color: "#2563EB" },
-      { name: "Vert", link: "/couleur/vert", color: "#16A34A" },
-      { name: "Jaune", link: "/couleur/jaune", color: "#EAB308" },
-      { name: "Orange", link: "/couleur/orange", color: "#EA580C" },
-      { name: "Rose", link: "/couleur/rose", color: "#EC4899" },
-      { name: "Violet", link: "/couleur/violet", color: "#9333EA" },
-      { name: "Noir", link: "/couleur/noir", color: "#171717" },
-    ],
-  },
-  { name: "Format", link: "/format" },
+  { name: "Panneau Acoustique", link: "/panneau-acoustique" },
   {
     name: "Intérieur",
     dropdownItems: [
