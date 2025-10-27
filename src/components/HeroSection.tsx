@@ -26,7 +26,7 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[70vh] md:h-[75vh] w-full overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentImage}
