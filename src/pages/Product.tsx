@@ -92,149 +92,201 @@ const Product = () => {
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
 
-      <div className="pt-40 pb-20 px-4">
+      <div className="pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
-            {/* Live Preview */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="sticky top-32"
-            >
-              <div className="elegant-card p-8 bg-gradient-to-br from-background to-secondary/20">
-                <div 
-                  className="relative mx-auto transition-all duration-500"
-                  style={{
-                    maxWidth: `${selectedDimension.width * 3}px`,
-                    aspectRatio: `${selectedDimension.width}/${selectedDimension.height}`,
-                  }}
-                >
-                  {selectedFrame.id !== "none" && (
-                    <div 
-                      className="absolute inset-0 -m-4 rounded-lg shadow-2xl"
+          {/* Product Title and Price */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{product.title}</h1>
+            <p className="text-4xl md:text-5xl font-bold text-gradient">
+              {totalPrice.toLocaleString()} MAD
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-20">
+            {/* Left: Live Preview with Frames Below */}
+            <div className="lg:col-span-2">
+              {/* Live Preview */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mb-8"
+              >
+                <div className="elegant-card p-8 bg-gradient-to-br from-background to-secondary/20">
+                  <div 
+                    className="relative mx-auto transition-all duration-500"
+                    style={{
+                      maxWidth: `${Math.min(selectedDimension.width * 4, 480)}px`,
+                      aspectRatio: `${selectedDimension.width}/${selectedDimension.height}`,
+                    }}
+                  >
+                    {selectedFrame.id !== "none" && (
+                      <div 
+                        className="absolute inset-0 -m-6 rounded-lg shadow-2xl"
+                        style={{
+                          backgroundImage: `url("${selectedFrame.image}")`,
+                          backgroundSize: "100% 100%",
+                          padding: selectedFrame.id === "floating" ? "16px" : "24px",
+                        }}
+                      />
+                    )}
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="relative w-full h-full object-cover rounded-lg shadow-xl"
                       style={{
-                        backgroundImage: `url("${selectedFrame.image}")`,
-                        backgroundSize: "100% 100%",
-                        padding: selectedFrame.id === "floating" ? "12px" : "20px",
+                        margin: selectedFrame.id === "floating" ? "16px" : selectedFrame.id === "none" ? "0" : "24px",
                       }}
                     />
-                  )}
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="relative w-full h-full object-cover rounded-lg shadow-xl"
-                    style={{
-                      margin: selectedFrame.id === "floating" ? "12px" : selectedFrame.id === "none" ? "0" : "20px",
-                    }}
-                  />
+                  </div>
+                  <div className="mt-6 text-center">
+                    <p className="text-sm text-muted-foreground">Aperçu en direct</p>
+                    <p className="text-xl font-semibold mt-2">{selectedDimension.label}</p>
+                  </div>
                 </div>
-                <div className="mt-6 text-center">
-                  <p className="text-sm text-muted-foreground">Aperçu en direct</p>
-                  <p className="text-lg font-semibold mt-2">{selectedDimension.label}</p>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Customization Options */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{product.title}</h1>
-              <p className="text-3xl font-bold text-gradient mb-8">
-                {totalPrice.toLocaleString()} MAD
-              </p>
-
-              {/* Dimensions */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4">Dimensions</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {dimensions.map((dim) => (
-                    <button
-                      key={dim.id}
-                      onClick={() => setSelectedDimension(dim)}
-                      className={`elegant-card p-4 text-center transition-all duration-300 ${
-                        selectedDimension.id === dim.id
-                          ? "ring-2 ring-accent scale-105"
-                          : "hover:scale-102"
-                      }`}
-                    >
-                      <p className="font-semibold">{dim.label}</p>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {(product.basePrice * dim.multiplier).toLocaleString()} MAD
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Frames */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4">Type de Cadre</h3>
-                <div className="grid grid-cols-2 gap-4">
+              {/* Frames Selection Below Preview */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <h3 className="text-2xl font-semibold mb-6">Type de Cadre</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {frames.map((frame) => (
                     <button
                       key={frame.id}
                       onClick={() => setSelectedFrame(frame)}
-                      className={`elegant-card p-4 transition-all duration-300 ${
+                      className={`elegant-card overflow-hidden transition-all duration-300 group ${
                         selectedFrame.id === frame.id
-                          ? "ring-2 ring-accent scale-105"
-                          : "hover:scale-102"
+                          ? "ring-4 ring-accent scale-105 shadow-xl"
+                          : "hover:scale-105 hover:shadow-lg"
                       }`}
                     >
-                      <div 
-                        className="w-full h-32 mb-3 rounded-lg bg-cover bg-center"
-                        style={{ backgroundImage: `url("${frame.image}")` }}
-                      />
-                      <p className="font-semibold">{frame.name}</p>
-                      <p className="text-sm text-muted-foreground">{frame.description}</p>
-                      <p className="text-accent font-semibold mt-2">
-                        {frame.price > 0 ? `+${frame.price} MAD` : "Inclus"}
-                      </p>
+                      {/* Frame Preview with Product Image Inside */}
+                      <div className="relative aspect-[3/4] overflow-hidden bg-secondary/20">
+                        {frame.id !== "none" && (
+                          <div 
+                            className="absolute inset-0 -m-1"
+                            style={{
+                              backgroundImage: `url("${frame.image}")`,
+                              backgroundSize: "100% 100%",
+                              padding: frame.id === "floating" ? "6px" : "10px",
+                            }}
+                          />
+                        )}
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="relative w-full h-full object-cover"
+                          style={{
+                            margin: frame.id === "floating" ? "6px" : frame.id === "none" ? "0" : "10px",
+                          }}
+                        />
+                        {selectedFrame.id === frame.id && (
+                          <div className="absolute inset-0 bg-accent/10 flex items-center justify-center">
+                            <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center">
+                              ✓
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-3 text-left">
+                        <p className="font-semibold text-sm mb-1">{frame.name}</p>
+                        <p className="text-xs text-muted-foreground mb-2 line-clamp-1">{frame.description}</p>
+                        <p className="text-accent font-bold text-sm">
+                          {frame.price > 0 ? `+${frame.price} MAD` : "Inclus"}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right: Customization Options */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="space-y-8"
+            >
+              {/* Dimensions */}
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Dimensions</h3>
+                <div className="space-y-3">
+                  {dimensions.map((dim) => (
+                    <button
+                      key={dim.id}
+                      onClick={() => setSelectedDimension(dim)}
+                      className={`w-full elegant-card p-4 text-left transition-all duration-300 ${
+                        selectedDimension.id === dim.id
+                          ? "ring-2 ring-accent scale-105 bg-accent/5"
+                          : "hover:scale-102 hover:bg-secondary/30"
+                      }`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="font-semibold text-lg">{dim.label}</p>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {(product.basePrice * dim.multiplier).toLocaleString()} MAD
+                          </p>
+                        </div>
+                        {selectedDimension.id === dim.id && (
+                          <div className="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-xs">
+                            ✓
+                          </div>
+                        )}
+                      </div>
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Quantity */}
-              <div className="mb-8">
+              <div>
                 <h3 className="text-xl font-semibold mb-4">Quantité</h3>
-                <div className="flex items-center gap-4">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="h-12 w-12"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <span className="text-2xl font-bold w-12 text-center">{quantity}</span>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="h-12 w-12"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
+                <div className="elegant-card p-4">
+                  <div className="flex items-center justify-center gap-6">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="h-12 w-12 rounded-full"
+                    >
+                      <Minus className="h-5 w-5" />
+                    </Button>
+                    <span className="text-3xl font-bold w-16 text-center">{quantity}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="h-12 w-12 rounded-full"
+                    >
+                      <Plus className="h-5 w-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
 
               {/* Add to Cart */}
-              <Button className="w-full h-14 text-lg gradient-primary hover:opacity-90 transition-opacity">
-                Ajouter au Panier - {totalPrice.toLocaleString()} MAD
+              <Button className="w-full h-16 text-lg font-semibold gradient-primary hover:opacity-90 transition-opacity shadow-lg">
+                Ajouter au Panier
               </Button>
 
               {/* Product Description */}
-              <div className="mt-12 elegant-card p-6">
-                <h3 className="text-xl font-semibold mb-4">Description</h3>
-                <p className="text-muted-foreground leading-relaxed">
+              <div className="elegant-card p-6 bg-gradient-to-br from-secondary/20 to-background">
+                <h3 className="text-lg font-semibold mb-3">Description</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Cette œuvre d'art exceptionnelle apportera une touche d'élégance à votre intérieur. 
                   Imprimée sur toile canvas de qualité premium avec des encres résistantes aux UV, 
-                  chaque détail est reproduit avec une fidélité remarquable. Nos tableaux sont fabriqués 
-                  au Maroc avec le plus grand soin pour garantir une qualité optimale.
+                  chaque détail est reproduit avec une fidélité remarquable.
                 </p>
               </div>
             </motion.div>
