@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 import { VerticalCutReveal } from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6];
 
@@ -104,13 +105,15 @@ export const HeroSection = () => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="flex gap-4"
         >
-          <Button
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90 rounded-full px-8 text-lg font-medium shadow-2xl"
-          >
-            Découvrir
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/about">
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 rounded-full px-8 text-lg font-medium shadow-2xl"
+            >
+              Sur mesure. Découvrir KENZART
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </motion.div>
 
         <div className="absolute bottom-8 flex gap-2">
