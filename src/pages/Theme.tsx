@@ -19,7 +19,11 @@ const Theme = () => {
     bw: { title: "Black and White", description: "L'élégance monochrome", hero: hero1 },
     floral: { title: "Art Floral", description: "La nature en floraison", hero: hero2 },
     texture: { title: "Tableaux Texturés", description: "Relief et profondeur artistique", hero: hero3 },
-    world: { title: "Autour du Monde", description: "Voyagez à travers l'art", hero: hero4 }
+    world: { title: "Autour du Monde", description: "Voyagez à travers l'art", hero: hero4 },
+    cinema: { title: "Cinéma et Musique", description: "L'art du spectacle et des mélodies", hero: hero1 },
+    sports: { title: "Sports et Jeux", description: "L'énergie de la compétition", hero: hero2 },
+    enfant: { title: "Enfant", description: "Un monde d'imagination et de rêves", hero: hero3 },
+    anime: { title: "Anime", description: "L'univers captivant de l'animation japonaise", hero: hero4 }
   };
 
   const current = themeData[theme || "maroc"];

@@ -16,6 +16,10 @@ import themeBW from "@/assets/theme-bw.jpg";
 import themeFloral from "@/assets/theme-floral.jpg";
 import themeTexture from "@/assets/theme-texture.jpg";
 import themeWorld from "@/assets/theme-world.jpg";
+import themeCinema from "@/assets/theme-cinema.jpg";
+import themeSports from "@/assets/theme-sports.jpg";
+import themeEnfant from "@/assets/theme-enfant.jpg";
+import themeAnime from "@/assets/theme-anime.jpg";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -89,6 +93,10 @@ const Index = () => {
             <ThemeCard image={themeFloral} title="Art Floral" link="/theme/floral" delay={0.5} />
             <ThemeCard image={themeTexture} title="Texturé" link="/theme/texture" delay={0.6} />
             <ThemeCard image={themeWorld} title="Autour du Monde" link="/theme/world" delay={0.7} />
+            <ThemeCard image={themeCinema} title="Cinéma et musique" link="/theme/cinema" delay={0.8} />
+            <ThemeCard image={themeSports} title="Sports et jeux" link="/theme/sports" delay={0.9} />
+            <ThemeCard image={themeEnfant} title="Enfant" link="/theme/enfant" delay={1.0} />
+            <ThemeCard image={themeAnime} title="Anime" link="/theme/anime" delay={1.1} />
           </div>
         </div>
       </section>
