@@ -110,7 +110,7 @@ export const HeroSection = () => {
               size="lg"
               className="bg-white text-primary hover:bg-white/90 rounded-full px-8 text-lg font-medium shadow-2xl"
             >
-              Sur mesure. Découvrir KENZART
+              Découvrir KANZART
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
