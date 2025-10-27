@@ -102,7 +102,7 @@ export const FloatingNav = ({
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 mt-2 min-w-[200px] max-h-[60vh] overflow-y-auto glass-effect rounded-2xl shadow-2xl z-50 bg-background/95 backdrop-blur-md"
+                          className="absolute top-full left-0 mt-2 min-w-[200px] glass-effect rounded-2xl shadow-2xl overflow-hidden"
                         >
                           {navItem.dropdownItems.map((item, index) => (
                             <Link
