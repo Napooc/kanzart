@@ -49,7 +49,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">À Propos de KENZART</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">À Propos de KANZART</h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
               Votre destination privilégiée pour l'art marocain contemporain. 
               Nous donnons vie à vos espaces avec des œuvres uniques et personnalisables.
@@ -68,7 +68,7 @@ const About = () => {
                 <h2 className="text-4xl font-bold mb-6">Notre Histoire</h2>
                 <div className="space-y-4 text-lg text-muted-foreground">
                   <p>
-                    KENZART est née de la passion pour l'art marocain et du désir de le rendre accessible à tous. 
+                    KANZART est née de la passion pour l'art marocain et du désir de le rendre accessible à tous.
                     Fondée au cœur de Casablanca, notre galerie en ligne est devenue une référence pour ceux qui cherchent 
                     à décorer leurs espaces avec authenticité et élégance.
                   </p>
@@ -93,7 +93,7 @@ const About = () => {
               >
                 <img
                   src={interiorHome}
-                  alt="KENZART Gallery"
+                  alt="KANZART Gallery"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                 />
               </motion.div>

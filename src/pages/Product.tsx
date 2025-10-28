@@ -93,7 +93,7 @@ const Product = () => {
     <div className="min-h-screen">
       <FloatingNav navItems={navItems} />
 
-      <div className="pt-28 pb-16 px-4">
+      <div className="pt-40 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Compact Header */}
           <motion.div
@@ -289,7 +289,7 @@ const Product = () => {
             transition={{ duration: 0.8 }}
             className="mt-20 elegant-card p-12"
           >
-            <h2 className="text-3xl font-bold mb-6">Pourquoi Choisir KENZART?</h2>
+            <h2 className="text-3xl font-bold mb-6">Pourquoi Choisir KANZART?</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-3 text-accent">Qualité Premium</h3>

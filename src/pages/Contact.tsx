@@ -42,7 +42,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      details: "contact@kenzart.ma"
+      details: "contact@kanzart.ma"
     },
     {
       icon: Clock,

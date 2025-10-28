@@ -28,7 +28,7 @@ export const FooterTaped = () => {
               to="/"
               className="flex flex-row gap-1 items-center justify-start"
             >
-              <img src={logo} alt="KENZART" className="h-16 w-auto" />
+              <img src={logo} alt="KANZART" className="h-16 w-auto" />
             </Link>
             <p className="text-muted-foreground font-medium text-base w-full md:w-4/5">
               L'art marocain à votre portée. Découvrez notre collection de tableaux personnalisables.
@@ -63,9 +63,9 @@ export const FooterTaped = () => {
                   <Phone className="h-4 w-4" />
                   <span>+212 6XX XX XX XX</span>
                 </a>
-                <a className="text-foreground/70 hover:text-foreground flex items-center gap-2 font-medium transition-colors" href="mailto:contact@kenzart.ma">
+                <a className="text-foreground/70 hover:text-foreground flex items-center gap-2 font-medium transition-colors" href="mailto:contact@kanzart.ma">
                   <Mail className="h-4 w-4" />
-                  <span>contact@kenzart.ma</span>
+                  <span>contact@kanzart.ma</span>
                 </a>
               </div>
             </div>
@@ -76,25 +76,25 @@ export const FooterTaped = () => {
       <div className="my-3 px-4 md:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-muted-foreground">
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-8 items-start sm:items-center">
           <p className="whitespace-nowrap">
-            ©{currentYear} KENZART. Tous droits réservés.
+            ©{currentYear} KANZART. Tous droits réservés.
           </p>
         </div>
 
         <div className="flex gap-4 items-center">
           <a
-            href="https://www.facebook.com/kenzart"
+            href="https://www.facebook.com/kanzart"
             target="_blank"
             rel="nofollow noopener"
-            aria-label="KENZART Facebook"
+            aria-label="KANZART Facebook"
             className="hover:text-foreground transition-colors"
           >
             <Facebook className="w-5 h-5" />
           </a>
           <a
-            href="https://www.instagram.com/kenzart"
+            href="https://www.instagram.com/kanzart"
             target="_blank"
             rel="nofollow noopener"
-            aria-label="KENZART Instagram"
+            aria-label="KANZART Instagram"
             className="hover:text-foreground transition-colors"
           >
             <Instagram className="w-5 h-5" />

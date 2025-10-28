@@ -72,7 +72,7 @@ export const FloatingNav = ({
       >
         <div className="max-w-7xl mx-auto glass-effect rounded-full px-8 py-4 flex items-center justify-between shadow-2xl">
           <Link to="/" className="flex items-center flex-shrink-0 pr-8">
-            <img src={logo} alt="KENZART" className="h-20 w-auto px-4" />
+            <img src={logo} alt="KANZART" className="h-20 w-auto px-4" />
           </Link>
 
           <div className="flex items-center space-x-2 flex-1 justify-center">
@@ -103,17 +103,35 @@ export const FloatingNav = ({
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 mt-2 min-w-[200px] glass-effect rounded-2xl shadow-2xl overflow-hidden"
+                          className="absolute top-full left-0 mt-3 glass-effect rounded-2xl shadow-2xl overflow-hidden z-50"
                         >
-                          {navItem.dropdownItems.map((item, index) => (
-                            <Link
-                              key={index}
-                              to={item.link}
-                              className="block px-4 py-3 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
+                          {/* Modern 2-column grid layout for Thème menu */}
+                          {navItem.name === "Thème" ? (
+                            <div className="grid grid-cols-2 gap-1 p-3 min-w-[500px]">
+                              {navItem.dropdownItems.map((item, index) => (
+                                <Link
+                                  key={index}
+                                  to={item.link}
+                                  className="px-4 py-3 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/70 rounded-lg transition-all duration-200 font-medium"
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </div>
+                          ) : (
+                            /* Regular vertical dropdown for other menus */
+                            <div className="min-w-[220px]">
+                              {navItem.dropdownItems.map((item, index) => (
+                                <Link
+                                  key={index}
+                                  to={item.link}
+                                  className="block px-4 py-3 text-sm text-foreground/80 hover:text-foreground hover:bg-secondary/50 transition-all duration-200"
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
                         </motion.div>
                       )}
                       {hoveredItem === navItem.name && navItem.colorItems && (

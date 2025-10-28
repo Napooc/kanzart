@@ -52,7 +52,7 @@ export const HeroSection = () => {
           className="mb-6"
         >
           <AnimatedText
-            text="KENZART"
+            text="KANZART"
             textClassName="text-6xl md:text-8xl font-bold text-white"
             underlineClassName="text-white"
             underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"

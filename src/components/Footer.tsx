@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div>
-            <img src={logo} alt="KENZART" className="h-16 w-auto mb-4 brightness-0 invert" />
+            <img src={logo} alt="KANZART" className="h-16 w-auto mb-4 brightness-0 invert" />
             <p className="text-primary-foreground/80 mb-4">
               L'art marocain à votre portée. Découvrez notre collection de tableaux personnalisables.
             </p>
@@ -55,14 +55,14 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
-                <span className="text-primary-foreground/80">contact@kenzart.ma</span>
+                <span className="text-primary-foreground/80">contact@kanzart.ma</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-8 text-center text-primary-foreground/60">
-          <p>&copy; 2025 KENZART. Tous droits réservés.</p>
+          <p>&copy; 2025 KANZART. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
