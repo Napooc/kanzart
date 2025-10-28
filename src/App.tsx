@@ -7,6 +7,8 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Nouveaute from "./pages/Nouveaute";
 import Product from "./pages/Product";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
 import Format from "./pages/Format";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/nouveaute" element={<Nouveaute />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/format" element={<Format />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

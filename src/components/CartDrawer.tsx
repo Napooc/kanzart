@@ -1,4 +1,5 @@
 import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Trash2, Plus, Minus } from "lucide-react";
@@ -6,12 +7,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useState } from "react";
 
 export const CartDrawer = () => {
+  const navigate = useNavigate();
   const { items, removeItem, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCheckout = () => {
+    setIsOpen(false);
+    navigate("/checkout");
+  };
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="relative">
           <ShoppingCart className="h-5 w-5" />
@@ -123,7 +132,10 @@ export const CartDrawer = () => {
               <Separator />
 
               <div className="space-y-2">
-                <Button className="w-full h-12 text-base gradient-primary">
+                <Button 
+                  className="w-full h-12 text-base gradient-primary hover:opacity-90 transition-opacity"
+                  onClick={handleCheckout}
+                >
                   Commander Maintenant
                 </Button>
                 <Button
