@@ -8,6 +8,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { CartDrawer } from "@/components/CartDrawer";
 import logo from "@/assets/kenzart-logo.png";
 
 interface ColorItem {
@@ -146,6 +147,11 @@ export const FloatingNav = ({
                 )}
               </div>
             ))}
+          </div>
+
+          {/* Cart Button */}
+          <div className="flex-shrink-0 pl-4">
+            <CartDrawer />
           </div>
         </div>
       </motion.div>

@@ -6,8 +6,10 @@ import { ProductCard } from "@/components/ProductCard";
 import { FrameOption, frames } from "@/components/FrameOption";
 import { motion } from "framer-motion";
 import { navItems } from "@/config/navigation";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
@@ -42,6 +44,8 @@ const Product = () => {
   const [selectedFrame, setSelectedFrame] = useState(frames[0]);
   const [selectedDimension, setSelectedDimension] = useState(dimensions[1]);
   const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
+  const { addItem } = useCart();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,6 +61,33 @@ const Product = () => {
 
   const similarProducts = products.filter((p) => p.id !== id).slice(0, 3);
   const totalPrice = (product.basePrice * selectedDimension.multiplier + selectedFrame.price) * quantity;
+
+  const handleAddToCart = () => {
+    setIsAdding(true);
+    
+    addItem({
+      productId: product.id,
+      title: product.title,
+      image: product.image,
+      basePrice: product.basePrice,
+      frameId: selectedFrame.id,
+      frameName: selectedFrame.name,
+      framePrice: selectedFrame.price,
+      dimensionId: selectedDimension.id,
+      dimensionLabel: selectedDimension.label,
+      dimensionMultiplier: selectedDimension.multiplier,
+      quantity,
+      totalPrice,
+    });
+
+    toast({
+      title: "✨ Ajouté au panier !",
+      description: `${product.title} a été ajouté à votre panier`,
+      duration: 3000,
+    });
+
+    setTimeout(() => setIsAdding(false), 1000);
+  };
 
   return (
     <div className="min-h-screen">
@@ -182,8 +213,40 @@ const Product = () => {
               </div>
 
               {/* Add to Cart */}
-              <Button className="w-full h-14 text-base font-semibold gradient-primary hover:opacity-90 transition-opacity">
-                Ajouter au Panier
+              <Button 
+                className="w-full h-14 text-base font-semibold gradient-primary hover:opacity-90 transition-all relative overflow-hidden group"
+                onClick={handleAddToCart}
+                disabled={isAdding}
+              >
+                <motion.div
+                  initial={false}
+                  animate={{
+                    scale: isAdding ? [1, 1.2, 1] : 1,
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center gap-2"
+                >
+                  {isAdding ? (
+                    <>
+                      <Check className="h-5 w-5" />
+                      Ajouté !
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="h-5 w-5" />
+                      Ajouter au Panier
+                    </>
+                  )}
+                </motion.div>
+                
+                {isAdding && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 1 }}
+                    animate={{ scale: 3, opacity: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="absolute inset-0 rounded-full bg-white/30"
+                  />
+                )}
               </Button>
 
               {/* Compact Description */}
