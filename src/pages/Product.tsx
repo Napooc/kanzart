@@ -145,7 +145,7 @@ const Product = () => {
       opacity: 1,
       x: 0
     }} className="fixed top-8 left-8 z-50">
-        <Button onClick={() => navigate(-1)} size="lg" className="rounded-full shadow-elegant glass-effect hover:scale-105 transition-all duration-300 group bg-zinc-950 hover:bg-zinc-800">
+        <Button onClick={() => navigate(-1)} size="lg" className="rounded-full shadow-elegant glass-effect hover:scale-105 transition-all duration-300 group text-left bg-black text-white">
           <ArrowLeft className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
           Retour
         </Button>
