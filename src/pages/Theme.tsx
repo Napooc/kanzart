@@ -56,15 +56,20 @@ const Theme = () => {
       
       <div className="pt-40 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-4 text-gradient">{current.title}</h1>
             <p className="text-xl text-muted-foreground">{current.description}</p>
           </motion.div>
           
-          <FilterBar filters={filters} onFiltersChange={setFilters} />
-          
-          {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* Layout with Filter Sidebar */}
+          <div className="flex gap-8">
+            {/* Left Sidebar - Filters */}
+            <FilterBar filters={filters} onFiltersChange={setFilters} />
+            
+            {/* Right Content - Products */}
+            <div className="flex-1">
+              {filteredProducts.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {filteredProducts.map((p, i) => (
                 <Link key={i} to={`/product/${p.id}`}>
                   <motion.div 
@@ -81,17 +86,19 @@ const Theme = () => {
                   </motion.div>
                 </Link>
               ))}
+                </div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20 glass-effect rounded-3xl"
+                >
+                  <p className="text-2xl text-muted-foreground mb-4">Aucun produit trouvé</p>
+                  <p className="text-muted-foreground">Essayez de modifier vos filtres</p>
+                </motion.div>
+              )}
             </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20 glass-effect rounded-3xl"
-            >
-              <p className="text-2xl text-muted-foreground mb-4">Aucun produit trouvé</p>
-              <p className="text-muted-foreground">Essayez de modifier vos filtres</p>
-            </motion.div>
-          )}
+          </div>
         </div>
       </div>
       <FooterTaped />

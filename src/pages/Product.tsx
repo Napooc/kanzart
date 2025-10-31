@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { FloatingNav } from "@/components/FloatingNav";
+import { useParams, useNavigate } from "react-router-dom";
 import { FooterTaped } from "@/components/FooterTaped";
 import { ProductCard } from "@/components/ProductCard";
 import { FrameOption, frames } from "@/components/FrameOption";
 import { motion } from "framer-motion";
-import { navItems } from "@/config/navigation";
-import { Minus, Plus, ShoppingCart, Check } from "lucide-react";
+import { Minus, Plus, ShoppingCart, Check, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
@@ -40,6 +38,7 @@ const dimensions = [
 
 const Product = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = products.find((p) => p.id === id);
   const [selectedFrame, setSelectedFrame] = useState(frames[0]);
   const [selectedDimension, setSelectedDimension] = useState(dimensions[1]);
@@ -91,9 +90,23 @@ const Product = () => {
 
   return (
     <div className="min-h-screen">
-      <FloatingNav navItems={navItems} />
+      {/* Fixed Back Button */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-8 left-8 z-50"
+      >
+        <Button
+          onClick={() => navigate(-1)}
+          size="lg"
+          className="rounded-full shadow-elegant glass-effect hover:scale-105 transition-all duration-300 group"
+        >
+          <ArrowLeft className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+          Retour
+        </Button>
+      </motion.div>
 
-      <div className="pt-40 pb-16 px-4">
+      <div className="pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Compact Header */}
           <motion.div

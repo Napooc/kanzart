@@ -93,7 +93,7 @@ const Nouveaute = () => {
           y: 0
         }} transition={{
           duration: 0.6
-        }} className="text-center mb-16">
+        }} className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Sparkles className="h-8 w-8 text-accent" />
               <h1 className="text-4xl md:text-6xl font-bold text-gradient">
@@ -106,10 +106,15 @@ const Nouveaute = () => {
             </p>
           </motion.div>
 
-          <FilterBar filters={filters} onFiltersChange={setFilters} />
+          {/* Layout with Filter Sidebar */}
+          <div className="flex gap-8">
+            {/* Left Sidebar - Filters */}
+            <FilterBar filters={filters} onFiltersChange={setFilters} />
 
-          {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {/* Right Content - Products */}
+            <div className="flex-1">
+              {filteredProducts.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {filteredProducts.map((product, index) => <Link key={product.id} to={`/product/${product.id}`} className="block">
                   <motion.div initial={{
                 opacity: 0,
@@ -141,17 +146,19 @@ const Nouveaute = () => {
                     </div>}
                 </motion.div>
               </Link>)}
+                </div>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20 glass-effect rounded-3xl"
+                >
+                  <p className="text-2xl text-muted-foreground mb-4">Aucun produit trouvé</p>
+                  <p className="text-muted-foreground">Essayez de modifier vos filtres</p>
+                </motion.div>
+              )}
             </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20 glass-effect rounded-3xl"
-            >
-              <p className="text-2xl text-muted-foreground mb-4">Aucun produit trouvé</p>
-              <p className="text-muted-foreground">Essayez de modifier vos filtres</p>
-            </motion.div>
-          )}
+          </div>
         </div>
       </div>
 

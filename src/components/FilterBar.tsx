@@ -1,8 +1,6 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { Filter, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
 
 export type FilterState = {
   colors: string[];
@@ -32,7 +30,6 @@ interface FilterBarProps {
 }
 
 export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleColor = (colorId: string) => {
     const newColors = filters.colors.includes(colorId)
@@ -55,156 +52,112 @@ export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
   const activeFiltersCount = filters.colors.length + filters.formats.length;
 
   return (
-    <div className="glass-effect rounded-3xl p-6 mb-12 sticky top-24 z-30">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <Filter className="w-5 h-5 text-primary" />
-          <h3 className="text-lg font-semibold">Filtres</h3>
-          {activeFiltersCount > 0 && (
-            <Badge variant="secondary" className="ml-2">
-              {activeFiltersCount}
-            </Badge>
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          {activeFiltersCount > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearFilters}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              Réinitialiser
-            </Button>
-          )}
+    <motion.div 
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      className="w-80 h-full sticky top-24 glass-effect rounded-3xl p-8 flex flex-col gap-8"
+    >
+      {/* Header */}
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold text-gradient">Filtres</h2>
+        {activeFiltersCount > 0 && (
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="text-primary"
+            onClick={clearFilters}
+            className="text-muted-foreground hover:text-foreground -ml-2"
           >
-            {isExpanded ? "Réduire" : "Étendre"}
+            Réinitialiser tout ({activeFiltersCount})
           </Button>
+        )}
+      </div>
+
+      {/* Color Filters */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">Couleur</h3>
+        <div className="grid grid-cols-2 gap-3">
+          {COLORS.map((color) => {
+            const isSelected = filters.colors.includes(color.id);
+            return (
+              <motion.button
+                key={color.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => toggleColor(color.id)}
+                className={`relative rounded-2xl p-4 transition-all duration-300 ${
+                  isSelected
+                    ? "ring-2 ring-primary shadow-elegant"
+                    : "hover:shadow-md"
+                }`}
+                style={{
+                  background: isSelected
+                    ? `linear-gradient(135deg, ${color.hex}20, ${color.hex}10)`
+                    : "hsl(var(--muted))",
+                }}
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div
+                    className="w-10 h-10 rounded-full border-2 border-background shadow-md transition-transform"
+                    style={{ 
+                      background: color.hex,
+                      transform: isSelected ? 'scale(1.1)' : 'scale(1)'
+                    }}
+                  />
+                  <span className="text-xs font-medium">{color.name}</span>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-lg"
+                    >
+                      <X className="w-3 h-3 text-primary-foreground" />
+                    </motion.div>
+                  )}
+                </div>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            {/* Color Filters */}
-            <div className="mb-6">
-              <h4 className="text-sm font-medium mb-3 text-muted-foreground">Couleur</h4>
-              <div className="flex flex-wrap gap-2">
-                {COLORS.map((color) => (
-                  <motion.button
-                    key={color.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => toggleColor(color.id)}
-                    className={`group relative rounded-2xl p-3 transition-all duration-300 ${
-                      filters.colors.includes(color.id)
-                        ? "ring-2 ring-primary shadow-lg"
-                        : "hover:shadow-md"
-                    }`}
-                    style={{
-                      background: filters.colors.includes(color.id)
-                        ? `linear-gradient(135deg, ${color.hex}15, ${color.hex}25)`
-                        : "hsl(var(--muted))",
-                    }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-8 h-8 rounded-full border-2 border-white shadow-md"
-                        style={{ background: color.hex }}
-                      />
-                      <span className="text-sm font-medium">{color.name}</span>
-                      {filters.colors.includes(color.id) && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="w-5 h-5 rounded-full bg-primary flex items-center justify-center"
-                        >
-                          <X className="w-3 h-3 text-primary-foreground" />
-                        </motion.div>
-                      )}
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Format Filters */}
-            <div>
-              <h4 className="text-sm font-medium mb-3 text-muted-foreground">Format</h4>
-              <div className="grid grid-cols-3 gap-3">
-                {FORMATS.map((format) => (
-                  <motion.button
-                    key={format.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => toggleFormat(format.id)}
-                    className={`relative rounded-2xl p-6 transition-all duration-300 ${
-                      filters.formats.includes(format.id)
-                        ? "bg-primary text-primary-foreground shadow-elegant"
-                        : "bg-muted hover:bg-muted/80"
-                    }`}
-                  >
-                    <div className="text-center">
-                      <div className="text-4xl mb-2">{format.icon}</div>
-                      <div className="text-sm font-medium">{format.name}</div>
-                      {filters.formats.includes(format.id) && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="absolute top-2 right-2 w-6 h-6 rounded-full bg-background flex items-center justify-center"
-                        >
-                          <X className="w-4 h-4 text-primary" />
-                        </motion.div>
-                      )}
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Active Filters Preview (when collapsed) */}
-      {!isExpanded && activeFiltersCount > 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex flex-wrap gap-2 mt-4"
-        >
-          {filters.colors.map((colorId) => {
-            const color = COLORS.find(c => c.id === colorId);
-            return color ? (
-              <Badge key={colorId} variant="secondary" className="flex items-center gap-2">
-                <div
-                  className="w-3 h-3 rounded-full"
-                  style={{ background: color.hex }}
-                />
-                {color.name}
-              </Badge>
-            ) : null;
+      {/* Format Filters */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">Format</h3>
+        <div className="space-y-3">
+          {FORMATS.map((format) => {
+            const isSelected = filters.formats.includes(format.id);
+            return (
+              <motion.button
+                key={format.id}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => toggleFormat(format.id)}
+                className={`w-full relative rounded-2xl p-5 transition-all duration-300 ${
+                  isSelected
+                    ? "bg-primary text-primary-foreground shadow-elegant"
+                    : "bg-muted hover:bg-muted/80"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="text-3xl">{format.icon}</div>
+                  <div className="flex-1 text-left">
+                    <div className="font-semibold">{format.name}</div>
+                  </div>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      className="w-6 h-6 rounded-full bg-background flex items-center justify-center"
+                    >
+                      <X className="w-4 h-4 text-primary" />
+                    </motion.div>
+                  )}
+                </div>
+              </motion.button>
+            );
           })}
-          {filters.formats.map((formatId) => {
-            const format = FORMATS.find(f => f.id === formatId);
-            return format ? (
-              <Badge key={formatId} variant="secondary">
-                {format.icon} {format.name}
-              </Badge>
-            ) : null;
-          })}
-        </motion.div>
-      )}
-    </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
