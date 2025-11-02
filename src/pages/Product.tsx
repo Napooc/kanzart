@@ -138,18 +138,20 @@ const Product = () => {
   };
   return <div className="min-h-screen">
       {/* Fixed Back Button */}
-      <motion.div initial={{
-      opacity: 0,
-      x: -20
-    }} animate={{
-      opacity: 1,
-      x: 0
-    }} className="fixed top-8 left-8 z-50">
-        <Button onClick={() => navigate(-1)} size="lg" className="rounded-full shadow-elegant glass-effect hover:scale-105 transition-all duration-300 group text-left text-black bg-yellow-500 hover:bg-yellow-400">
-          <ArrowLeft className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-          Retour
-        </Button>
-      </motion.div>
+      <div className="fixed top-6 left-6 z-[100]">
+        <motion.div initial={{
+          opacity: 0,
+          x: -20
+        }} animate={{
+          opacity: 1,
+          x: 0
+        }}>
+          <Button onClick={() => navigate(-1)} size="lg" className="rounded-full shadow-elegant glass-effect hover:scale-105 transition-all duration-300 group text-left text-black bg-yellow-500 hover:bg-yellow-400">
+            <ArrowLeft className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Retour
+          </Button>
+        </motion.div>
+      </div>
 
       <div className="pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
