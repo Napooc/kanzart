@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { X, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 export type FilterState = {
   colors: string[];
@@ -30,6 +31,17 @@ interface FilterBarProps {
 }
 
 export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
+  const [isCompact, setIsCompact] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsCompact(window.scrollY > 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleColor = (colorId: string) => {
     const newColors = filters.colors.includes(colorId)
@@ -54,29 +66,65 @@ export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
   return (
     <motion.div 
       initial={{ x: -20, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      className="w-80 h-full sticky top-24 glass-effect rounded-3xl p-8 flex flex-col gap-8"
+      animate={{ 
+        x: 0, 
+        opacity: 1,
+        width: isCompact && !isExpanded ? "80px" : "320px"
+      }}
+      transition={{ duration: 0.3 }}
+      className="h-fit sticky top-24 glass-effect rounded-3xl overflow-hidden shadow-elegant"
     >
-      {/* Header */}
-      <div className="space-y-2">
-        <h2 className="text-2xl font-bold text-gradient">Filtres</h2>
-        {activeFiltersCount > 0 && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearFilters}
-            className="text-muted-foreground hover:text-foreground -ml-2"
-          >
-            Réinitialiser tout ({activeFiltersCount})
-          </Button>
-        )}
-      </div>
+      {/* Compact Toggle Button */}
+      {isCompact && !isExpanded && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={() => setIsExpanded(true)}
+          className="w-full p-6 flex flex-col items-center gap-3 hover:bg-muted/50 transition-colors"
+        >
+          <Filter className="w-6 h-6 text-primary" />
+          {activeFiltersCount > 0 && (
+            <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">
+              {activeFiltersCount}
+            </div>
+          )}
+        </motion.button>
+      )}
 
-      {/* Color Filters */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Couleur</h3>
-        <div className="grid grid-cols-2 gap-3">
-          {COLORS.map((color) => {
+      {/* Full Filter Content */}
+      {(!isCompact || isExpanded) && (
+        <div className="p-8 flex flex-col gap-8">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-gradient">Filtres</h2>
+            {isCompact && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsExpanded(false)}
+                className="h-8 w-8 p-0"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+
+          {activeFiltersCount > 0 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearFilters}
+              className="text-muted-foreground hover:text-foreground -ml-2 -mt-4"
+            >
+              Réinitialiser tout ({activeFiltersCount})
+            </Button>
+          )}
+
+          {/* Color Filters */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Couleur</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {COLORS.map((color) => {
             const isSelected = filters.colors.includes(color.id);
             return (
               <motion.button
@@ -115,16 +163,16 @@ export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
                   )}
                 </div>
               </motion.button>
-            );
-          })}
-        </div>
-      </div>
+                );
+              })}
+            </div>
+          </div>
 
-      {/* Format Filters */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Format</h3>
-        <div className="space-y-3">
-          {FORMATS.map((format) => {
+          {/* Format Filters */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Format</h3>
+            <div className="space-y-3">
+              {FORMATS.map((format) => {
             const isSelected = filters.formats.includes(format.id);
             return (
               <motion.button
@@ -153,11 +201,13 @@ export const FilterBar = ({ filters, onFiltersChange }: FilterBarProps) => {
                     </motion.div>
                   )}
                 </div>
-              </motion.button>
-            );
-          })}
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
       </div>
+      )}
     </motion.div>
   );
 };
